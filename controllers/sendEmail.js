@@ -22,6 +22,6 @@ export const sendEmail = async (req, res) => {
     });
     res.status(200).json();
   } catch (error) {
-    res.send(error);
+    res.status(400).json({});
   }
 };

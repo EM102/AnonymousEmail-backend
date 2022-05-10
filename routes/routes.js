@@ -9,7 +9,4 @@ router.post("/sendEmail", sendEmail);
 //Sign in
 router.post("/signin", signin_post);
 
-//Sign up
-// router.post("/signup", signUp);
-
 export default router;

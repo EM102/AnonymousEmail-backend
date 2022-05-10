@@ -22,7 +22,7 @@ describe("API testing", () => {
       try {
         await axios.post("http://localhost:8888/client/signin", body);
       } catch (error) {
-        assert.equal(error.code, "ERR_BAD_REQUEST");
+        assert.equal(error.response.status, "400");
       }
     });
 
@@ -35,7 +35,7 @@ describe("API testing", () => {
       try {
         await axios.post("http://localhost:8888/client/signin", body);
       } catch (error) {
-        assert.equal(error.code, "ERR_BAD_REQUEST");
+        assert.equal(error.response.status, "400");
       }
     });
 
@@ -60,7 +60,7 @@ describe("API testing", () => {
       try {
         await axios.post("http://localhost:8888/client/signin", body);
       } catch (error) {
-        assert.equal(error.code, "ERR_BAD_REQUEST");
+        assert.equal(error.response.status, "400");
       }
     });
   });
@@ -85,7 +85,8 @@ describe("API testing", () => {
           text: "",
         });
       } catch (error) {
-        assert.equal(error.code, "ERR_BAD_REQUEST");
+        // console.log(error);
+        assert.equal(error.response.status, "400");
       }
     });
 
@@ -94,52 +95,54 @@ describe("API testing", () => {
       //Empty email input
       it("Email is required", async () => {
         try {
-          await axios("http://localhost:8888/client/sendEmail", {
+          await axios.post("http://localhost:8888/client/sendEmail", {
             email: "",
-            subject: "Test",
-            text: "Test",
+            subject: "Text",
+            text: "Text",
           });
         } catch (error) {
-          assert.equal(error.code, "ERR_BAD_REQUEST");
+          // console.log(error);
+          assert.equal(error.response.status, "400");
         }
       });
 
       //Wrong email synthax
       it("Email synthax is incorrect", async () => {
         try {
-          await axios("http://localhost:8888/client/sendEmail", {
-            email: "asdasd",
-            subject: "Test",
-            text: "Test",
+          await axios.post("http://localhost:8888/client/sendEmail", {
+            email: "aaaaaa",
+            subject: "aaaaa",
+            text: "aaaaa",
           });
         } catch (error) {
-          assert.equal(error.code, "ERR_BAD_REQUEST");
+          // console.log(error);
+          assert.equal(error.response.status, "400");
         }
       });
 
       //Empty email and subject input
       it("Email and subject are required", async () => {
         try {
-          await axios("http://localhost:8888/client/sendEmail", {
+          await axios.post("http://localhost:8888/client/sendEmail", {
             email: "",
             subject: "",
             text: "Test",
           });
         } catch (error) {
-          assert.equal(error.code, "ERR_BAD_REQUEST");
+          assert.equal(error.response.status, "400");
         }
       });
 
       //Empty email and Text input
       it("Email and text are required", async () => {
         try {
-          await axios("http://localhost:8888/client/sendEmail", {
+          await axios.post("http://localhost:8888/client/sendEmail", {
             email: "",
             subject: "Test",
             text: "",
           });
         } catch (error) {
-          assert.equal(error.code, "ERR_BAD_REQUEST");
+          assert.equal(error.response.status, "400");
         }
       });
     });
@@ -149,13 +152,13 @@ describe("API testing", () => {
       //subject subject input
       it("Subject is required", async () => {
         try {
-          await axios("http://localhost:8888/client/sendEmail", {
+          await axios.post("http://localhost:8888/client/sendEmail", {
             email: "Elie--Moussallem@outlook.com",
             subject: "",
             text: "Test",
           });
         } catch (error) {
-          assert.equal(error.code, "ERR_BAD_REQUEST");
+          assert.equal(error.response.status, "400");
         }
       });
     });
@@ -165,13 +168,13 @@ describe("API testing", () => {
       //Empty text input
       it("Text is required", async () => {
         try {
-          await axios("http://localhost:8888/client/sendEmail", {
+          await axios.post("http://localhost:8888/client/sendEmail", {
             email: "Elie--Moussallem@outlook.com",
             subject: "Test",
             text: "",
           });
         } catch (error) {
-          assert.equal(error.code, "ERR_BAD_REQUEST");
+          assert.equal(error.response.status, "400");
         }
       });
     });

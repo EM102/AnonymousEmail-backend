@@ -10,7 +10,7 @@ import { json } from "./swagger.js";
 //connection to db
 let db_user = "Pnumber7";
 let db_pass = "Pnumber7";
-let db_name = "Pnumber9";
+let db_name = "Pnumber";
 let port = 8888;
 
 //Mongodb URL
