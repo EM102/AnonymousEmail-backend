@@ -18,6 +18,19 @@ jobs:
       matrix:
         node-version: [12.x, 14.x, 16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        include:
+          - environment: tst
+            client_id: TST_TF_ARM_CLIENT_ID
+            client_secret: TST_TF_ARM_CLIENT_SECRET
+            subscription_id: TST_TF_ARM_SUBSCRIPTION_ID
+          - environment: acc
+            client_id: ACC_TF_ARM_CLIENT_ID
+            client_secret: ACC_TF_ARM_CLIENT_SECRET
+            subscription_id: ACC_TF_ARM_SUBSCRIPTION_ID
+          - environment: prd
+            client_id: PRD_TF_ARM_CLIENT_ID
+            client_secret: PRD_TF_ARM_CLIENT_SECRET
+            subscription_id: PRD_TF_ARM_SUBSCRIPTION_ID`
 
     steps:
     - uses: actions/checkout@v3
